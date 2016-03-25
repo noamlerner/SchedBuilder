@@ -1,0 +1,1 @@
+var SchedDirs = angular.module('SchedDirs', ['SchedHeader'])

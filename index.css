@@ -1,0 +1,37 @@
+body{
+    background-color: #e74c3c;
+    font-family: 'Roboto', sans-serif;
+    color:#ECF0F1;
+}
+.text-center{
+    text-align: center;
+}
+h1{
+    font-size: 40px;    
+}
+.settings {
+    height: 796px;
+    width: 20%;
+    border: solid white 5px;
+    border-radius: 32px;
+    display: inline-block;
+    position: absolute;
+    top: 100px;
+    left: 6%;
+}
+.classes {
+    height: 800px;
+    width: 65%;
+    display: inline-block;
+    position: absolute;
+    left: 30%;
+}
+.class-view {
+    height: 375px;
+    border: solid white 5px;
+    border-radius: 32px;
+}
+
+.my-classes {
+    margin-top: 35px;
+}
