@@ -2,10 +2,11 @@ var sched = angular.module('SchedBuild', ['ngRoute','SchedControllers','SchedDir
 sched.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/list', {
+      when('/sched', {
         templateUrl: './partials/builder.html',
       }).
       otherwise({
-        redirectTo: '/list'
+        redirectTo: '/sched'
       });
 }]);
+fs.writeFileSync('./data.js', 'module.exports = ' + JSON.stringify(newData));
