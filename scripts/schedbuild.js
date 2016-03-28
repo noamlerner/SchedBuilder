@@ -9,4 +9,3 @@ sched.config(['$routeProvider',
         redirectTo: '/sched'
       });
 }]);
-fs.writeFileSync('./data.js', 'module.exports = ' + JSON.stringify(newData));

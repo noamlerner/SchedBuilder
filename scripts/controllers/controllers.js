@@ -1,1 +1,4 @@
-var ctrl = angular.module('SchedControllers', ['SettingsMod','AvailableClassesMod','MyClassesMod'])
+angular.module('SchedControllers', ['SettingsMod','AvailableClassesMod','MyClassesMod'])
+.controller('SchedSettingsCtrl', ['$scope', function ($scope) {
+	
+}])

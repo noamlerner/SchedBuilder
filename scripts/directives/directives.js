@@ -1,1 +1,1 @@
-var SchedDirs = angular.module('SchedDirs', ['SchedHeader'])
+var SchedDirs = angular.module('SchedDirs', ['CoursesDirs'])
