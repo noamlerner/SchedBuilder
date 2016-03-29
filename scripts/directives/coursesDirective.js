@@ -1,30 +1,23 @@
 angular.module('CoursesDirs', [])
-.directive('major', [function () {
+.directive('courses', [function () {
 	return {
 		restrict: 'E',
+		templateUrl:'/partials/directives/courses.html',
 		scope:{
-           major:"=maj"
+			courses:'=crs'
 		},
-		replace:true,
-		templateUrl:'/partials/directives/major.html',
 		link: function ($scope, iElement, iAttrs) {
-			$scope.expand = function(){
+			$scope.expandMajor = function(major){
+				$scope.major = major;
 				$scope.$parent.setMajor($scope.major)
+				$scope.toggleView();
 			}
-		}
-	};
-}])
-.directive('course', [function () {
-	return {
-		restrict: 'E',
-		templateUrl:'/partials/directives/course.html',
-		replace:true,
-		scope:{
-			course:'=crse'
-		},
-		link: function ($scope, iElement, iAttrs) {
-			$scope.expand = function(){
-				$scope.$parent.setCourse($scope.course)
+			$scope.expandCourse = function(course){
+				$scope.$parent.setCourse(course)
+			}
+			$scope.viewMajor = true;
+			$scope.toggleView = function(){
+				$scope.viewMajor = !$scope.viewMajor;
 			}
 		}
 	};

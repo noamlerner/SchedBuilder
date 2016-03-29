@@ -1,15 +1,9 @@
 <div class="text-center" ng-controller="SchedSettingsCtrl">
 	<div class="classes">
 		<div  class="available-classes class-view">
-			Filter: <input type="text" ng-model="search"></input>
-			<div ng-hide="major">
-				<major  ng-repeat="major in courses|filter:search" maj="major"></major>
-			</div>
-			<div ng-show="major">
-				<button ng-click="setMajor()">Back</button> <br>
-				<course ng-repeat="course in major.courses|filter:search" crse="course" ></course>
-			</div>
+			<courses crs="courses"></courses>
 		</div>
+			
 		<div class="my-classes class-view">
 		</div>
 	</div>
