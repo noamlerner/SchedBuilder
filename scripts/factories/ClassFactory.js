@@ -5,7 +5,7 @@ fact.factory('ClassFactory', ['$http',function ($http) {
 	    var courseData = [];
 	    eventData.getClasses = function (event) {
 	        if(!promise){
-				 promise = $http.get('./data');
+				 promise = $http.get('./courses');
 	        }
 	        return promise;
 	    }

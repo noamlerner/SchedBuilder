@@ -13,4 +13,22 @@ Object.keys(data).forEach(function(major){
 	delete maj.classes
 	newData.push(maj);
 })
-fs.writeFileSync('./data.js', 'module.exports = ' + JSON.stringify(newData));
+newData.forEach(function(major){
+	major.courses.forEach(function(course){
+		var instructors = [];
+		course.sections.forEach(function(section){
+			if(section.instructor){
+				var instructor = section.instructor.lname.trim() + ', ' + section.instructor.fname.trim();
+				if(instructors.indexOf(instructor) === -1){
+					instructors.push(instructor);
+				}
+			}
+				
+		})
+		course.priority= 'Med';
+		course.instructors = instructors;
+		course.instructors.push('Any');
+		course.professors = [{name:'Any',priority:'Med'}];
+	})
+});
+fs.writeFileSync('./data.js', JSON.stringify(newData));

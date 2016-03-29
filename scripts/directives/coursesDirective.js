@@ -22,8 +22,10 @@ angular.module('CoursesDirs', [])
 		scope:{
 			course:'=crse'
 		},
-		link: function (scope, iElement, iAttrs) {
-			
+		link: function ($scope, iElement, iAttrs) {
+			$scope.expand = function(){
+				$scope.$parent.setCourse($scope.course)
+			}
 		}
 	};
 }])
