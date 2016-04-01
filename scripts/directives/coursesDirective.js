@@ -9,7 +9,6 @@ angular.module('CoursesDirs', [])
 		link: function ($scope, iElement, iAttrs) {
 			$scope.expandMajor = function(major){
 				$scope.major = major;
-				$scope.$parent.setCourse()
 				$scope.toggleView();
 			}
 			$scope.expandCourse = function(course){
@@ -31,7 +30,7 @@ angular.module('CoursesDirs', [])
 		},
 		link: function ($scope, iElement, iAttrs) {
 			$scope.groups = ['any']
-			$scope.addGroup = function(){
+				$scope.addGroup = function(){
 				var name = $scope.groupName;
 				if(name && $scope.groups.indexOf(name) === -1 ){
 					$scope.groups.push(name);

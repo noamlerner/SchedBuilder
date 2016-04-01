@@ -16,7 +16,17 @@ angular.module('SchedControllers', ['SettingsMod','AvailableClassesMod','MyClass
 		$scope.setCourse = function(cl){
 			$scope.course = cl;
 			$scope.classPr = cl? cl.priority : 'Med';
+			if(cl){
+				$scope.setGroup();
+			}	
 		}	
+		$scope.setGroup = function(gr){
+			$scope.groupName = gr;
+			if(gr){
+				$scope.group = $scope.schedule.groups[gr];
+				$scope.setCourse();
+			}
+		}
 		$scope.addCourseToSched = function(curGroup){
 			$scope.schedule.groups[curGroup].courses.push($scope.course);
 			console.log($scope.schedule)

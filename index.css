@@ -30,7 +30,7 @@ h1{
     height: 375px;
     border: solid white 5px;
     border-radius: 32px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .my-classes {
