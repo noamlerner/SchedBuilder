@@ -1,14 +1,13 @@
 angular.module('GroupsDirs', [])
-.directive('groups', [function () {
+.directive('groups', ['ScheduleFactory',function (ScheduleFactory) {
 	return {
 		restrict: 'E',
 		templateUrl:'/partials/directives/groups.html',
-		scope:{
-			groups:'=grps'
-		},
 		link: function ($scope, iElement, iAttrs) {
+			$scope.groups = ScheduleFactory.schedule.groups;
 			$scope.expandGroup = function(group){
 				$scope.group = $scope.groups[group];
+				$scope.groupName = group;
 				$scope.$parent.setGroup(group)
 				$scope.toggleView();
 			}
@@ -20,13 +19,13 @@ angular.module('GroupsDirs', [])
 				$scope.viewGroups = !$scope.viewGroups;
 			}
 			$scope.removeCourse = function(course){
-				$scope.group.courses.splice($scope.group.courses.indexOf(course),1)
+				ScheduleFactory.removeCourseFromGroup($scope.groupName,course);
 			}
 		}
 	};
 }])
 
-.directive('groupsettings', [function () {
+.directive('groupsettings', ['ScheduleFactory',function (ScheduleFactory) {
 	return {
 		restrict: 'E',
 		templateUrl:'/partials/directives/groupSettings.html',
@@ -36,10 +35,9 @@ angular.module('GroupsDirs', [])
 		},
 		link: function ($scope, iElement, iAttrs) {
 			$scope.setGroupPriority = function(pr){
-				$scope.group.priority = pr;
+				ScheduleFactory.setGroupPriority(groupName,pr)
 			}
 			$scope.priorityLevels = ['Low','Med','High','Must'];
-
 		}
 	};
 }])

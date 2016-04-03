@@ -49,6 +49,7 @@ h1{
     background-color: #2c3e50;
     cursor:pointer;
 }
+
 .prof-table{
     margin-top:6px;
     width:100%;
@@ -57,4 +58,30 @@ h1{
     width: 100px;
     margin-top: 43px;
     height: 50px;
+}
+.num-input {
+    width: 45px;
+}
+.title:hover {
+    background-color: #2c3e50;
+    cursor:pointer;
+}
+.title {
+    border: solid #2c3e50 5px;
+    width: 95%;
+    border-radius: 32px;
+    vertical-align: top;
+    display: inline-block;
+    overflow-wrap: break-word;
+}
+.x-button{
+    float:left;
+}
+.continue {
+    position: absolute;
+    bottom: 120px;
+    right: 130px;
+    font-size: 34px;
+    text-decoration: none;
+    color: white;
 }

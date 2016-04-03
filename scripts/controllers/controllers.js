@@ -1,18 +1,12 @@
 angular.module('SchedControllers', ['SettingsMod','AvailableClassesMod','MyClassesMod'])
-.controller('SchedSettingsCtrl', ['$scope','ClassFactory', function ($scope,ClassFactory) {
+.controller('SchedSettingsCtrl', ['$scope','ClassFactory','ScheduleFactory', 
+	function ($scope,ClassFactory, ScheduleFactory) {
 	 ClassFactory.getClasses().then(function(data){
 		$scope.courses = data.data;
-		$scope.schedule = {
-			groups:{
-				any:{
-					courses:[]
-				}
-			}
-		};
 		$scope.addGroup = function(name){
-			$scope.schedule.groups[name] = {courses:[]};
-
+			ScheduleFactory.addGroup(name)
 		}
+		$scope.addGroup('any');	
 		$scope.setCourse = function(cl){
 			$scope.course = cl;
 			$scope.classPr = cl? cl.priority : 'Med';
@@ -21,6 +15,7 @@ angular.module('SchedControllers', ['SettingsMod','AvailableClassesMod','MyClass
 			}	
 		}	
 		$scope.setGroup = function(gr){
+			console.log('asdf')
 			$scope.groupName = gr;
 			if(gr){
 				$scope.group = $scope.schedule.groups[gr];
@@ -28,8 +23,7 @@ angular.module('SchedControllers', ['SettingsMod','AvailableClassesMod','MyClass
 			}
 		}
 		$scope.addCourseToSched = function(curGroup){
-			$scope.schedule.groups[curGroup].courses.push($scope.course);
-			console.log($scope.schedule)
+			ScheduleFactory.addCourseToGroup(curGroup,$scope.course)	
 		}
 	});
 
