@@ -1,4 +1,4 @@
-angular.module('SchedControllers', ['SettingsMod','AvailableClassesMod','MyClassesMod'])
+angular.module('SchedControllers', ['Classes'])
 .controller('SchedSettingsCtrl', ['$scope','ClassFactory','ScheduleFactory', 
 	function ($scope,ClassFactory, ScheduleFactory) {
 	 ClassFactory.getClasses().then(function(data){
