@@ -15,10 +15,9 @@ angular.module('SchedControllers', ['SettingsMod','AvailableClassesMod','MyClass
 			}	
 		}	
 		$scope.setGroup = function(gr){
-			console.log('asdf')
 			$scope.groupName = gr;
 			if(gr){
-				$scope.group = $scope.schedule.groups[gr];
+				$scope.group = ScheduleFactory.schedule.groups[gr];
 				$scope.setCourse();
 			}
 		}

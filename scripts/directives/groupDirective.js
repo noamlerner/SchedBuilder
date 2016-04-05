@@ -3,13 +3,14 @@ angular.module('GroupsDirs', [])
 	return {
 		restrict: 'E',
 		templateUrl:'/partials/directives/groups.html',
+		scope:{},
 		link: function ($scope, iElement, iAttrs) {
 			$scope.groups = ScheduleFactory.schedule.groups;
 			$scope.expandGroup = function(group){
 				$scope.group = $scope.groups[group];
 				$scope.groupName = group;
-				$scope.$parent.setGroup(group)
 				$scope.toggleView();
+				$scope.$parent.setGroup(group)
 			}
 			$scope.expandCourse = function(course){
 				$scope.$parent.setCourse(course)

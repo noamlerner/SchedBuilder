@@ -12,6 +12,7 @@ angular.module('CoursesDirs', [])
 				$scope.toggleView();
 			}
 			$scope.expandCourse = function(course){
+				console.log($scope.$parent)
 				$scope.$parent.setCourse(course)
 			}
 			$scope.viewMajor = true;
