@@ -23,7 +23,13 @@ angular.module('SchedControllers', ['Classes'])
 		}
 		$scope.addCourseToSched = function(curGroup){
 			ScheduleFactory.addCourseToGroup(curGroup,$scope.course)	
+			console.log(ScheduleFactory.schedule)
 		}
 	});
 
 }])
+.controller('GeneralSettinsCtrl', ['$scope','ScheduleFactory', 
+	function ($scope,ScheduleFactory) {	
+		
+	}
+])

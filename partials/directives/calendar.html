@@ -1,15 +1,28 @@
 <div>
+	
 	<table class="calendar-table">
 		<thead>
-			<th ng-repeat="day in days" >{{day}}</th>
+			<th class="no-border-left">Time</th>
+			<th ng-repeat="day in days" class="calendar-column-header">{{day}}</th>
 		</thead>
 		<tbody>
-			<td>8AM</td>
-			<td> </td>
-			<td> </td>
-			<td> </td>
-			<td> </td>
-			<td> </td>
+			<tr ng-repeat="hour in hours">
+				<td class="calendar-row-header">{{hour}}</td>
+				<td ng-repeat="(day,pr) in cal[hour]" ng-click="setPriority(hour,day)" ng-class="{
+					'calendar-cell':true,
+					'green':pr == 'Med',
+					'blue':pr == 'High',
+					'yellow':pr == 'Low',
+					'red':pr == 'Never'
+				}">{{pr}}</td>
+			</tr>
 		</tbody>
 	</table>
+	<div class="prOptions">
+		<div class="prOption red" ng-click="setPr('Never')" ng-class="{'selected':pr=='Never'}">Never</div>
+		<div class="prOption yellow" ng-click="setPr('Low')" ng-class="{'selected':pr=='Low'}">Low</div>
+		<div class="prOption green" ng-click="setPr('Med')" ng-class="{'selected':pr=='Med'}">Med</div>
+		<div class="prOption blue" ng-click="setPr('High')" ng-class="{'selected':pr=='High'}">High</div>
+	</div>
+	<p>Choose priority here</p>
 </div>

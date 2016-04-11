@@ -7,7 +7,7 @@
 	</div>
 	<div ng-hide="viewGroups">
 		<div class="title" ng-click="$parent.setGroup(groupName)">{{groupName}}</div>
-		Filter: <input type="text" ng-model="search"></input>
+		<br>Filter: <input type="text" ng-model="search"></input>
 		<button ng-click="toggleView()">Back</button> <br>
 		<div  ng-repeat="course in group.courses |filter:search" class="square" ng-click="expandCourse(course)">
 			<button ng-click="removeCourse(course)" class="x-button">x</button>
