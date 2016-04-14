@@ -8,6 +8,9 @@ sched.config(['$routeProvider',
       when('/general',{
       	templateUrl:'./partials/general.html'
       }).
+      when('/generate',{
+        templateUrl:'./partials/generate.html'
+      }).
       otherwise({
         redirectTo: '/sched'
       });

@@ -2,10 +2,11 @@ var fact = angular.module('Schedules', []);
 fact.factory('ScheduleFactory', [function () {	
 	var factory = {};
 	factory.schedule= {
-		groups:{}
+		groups:{},
+		prefHours:[13,15]
 	};
 	factory.addGroup = function(name){
-			schedule.groups[name] = {
+			factory.schedule.groups[name] = {
 				courses:[],
 				priority:'Med',
 				minHrs:-1,
@@ -33,5 +34,30 @@ fact.factory('ScheduleFactory', [function () {
 	factory.setGroupPriority = function(groupName,pr){
 		factory.schedule.groups[groupName].priority = pr;
 	}
+	factory.setPrefHours = function(p){
+		factory.schedule.prefHours = p;
+	}
+	factory.getMinMaxCreditHours = function(){
+		var minHours = 0;
+		var maxHours = 0;
+		Object.keys(factory.schedule.groups).forEach(function(gr){
+			if(factory.schedule.groups[gr].minHrs > 0){
+				minHours+= gr.minHrs;
+			}
+			if(factory.schedule.groups[gr].maxHours < 0){
+				maxHours = 21;
+			}
+			if(maxHours <21){
+				maxHours += gr.maxHours;
+			}else {
+				maxHours = 21;
+			}
+		});
+		return {
+			minHrs:minHours || -1,
+			maxHrs:maxHours || -1
+		};
+	}
+
 	return factory;
 }]);

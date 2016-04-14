@@ -75,7 +75,10 @@ h1{
     overflow-wrap: break-word;
 }
 .x-button{
+    background: white;
     float:left;
+    border: 1px solid white;
+    border-radius: 100%;
 }
 .continue {
     position: absolute;

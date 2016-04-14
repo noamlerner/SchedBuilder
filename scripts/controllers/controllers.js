@@ -23,7 +23,6 @@ angular.module('SchedControllers', ['Classes'])
 		}
 		$scope.addCourseToSched = function(curGroup){
 			ScheduleFactory.addCourseToGroup(curGroup,$scope.course)	
-			console.log(ScheduleFactory.schedule)
 		}
 	});
 
@@ -33,3 +32,11 @@ angular.module('SchedControllers', ['Classes'])
 		
 	}
 ])
+.controller('GenerateScheduleCtrl', ['$scope','ScheduleFactory','CalendarFactory', 
+	function ($scope,ScheduleFactory,CalendarFactory) {
+		var obj = {};
+		obj.schedule = ScheduleFactory.schedule;
+		obj.cal = CalendarFactory.cal;
+		console.log(obj);
+	}
+]);
