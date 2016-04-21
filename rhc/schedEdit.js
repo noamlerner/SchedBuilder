@@ -101,10 +101,29 @@ function removeRandCourse(schedulePrefs, oSched,groupName){
 		return sched;
 }
 function changeRandCourse(schedulePrefs, oSched){
-	return this.addRandCourse(schedulePrefs,this.removeRandCourse(schedulePrefs,oSched));
+	return addRandCourse(
+		schedulePrefs,
+		removeRandCourse(schedulePrefs,oSched)
+	);
 }
-module.exports = {
+function getRandNeighbors(schedulePrefs, oSched, numNeigbors){
+	var scheds = [oSched];
+	var neighbors = numNeigbors || 5;
+	for(var i = 0; i < neighbors-1 ; i++){
+		var index = util.rand(funcs.length)
+		// pick a random mutate function and apply it to the schedule
+		scheds.push(
+			edits[funcs[index]](schedulePrefs,oSched)
+		);
+	}
+	return scheds;
+}
+var edits = {
 	addRandCourse:addRandCourse,
 	removeRandCourse:removeRandCourse,
 	changeRandCourse:changeRandCourse
 };
+var funcs = Object.keys(edits);
+// placed after object.keys so that it isnt included in funcs
+edits.getRandNeighbors = getRandNeighbors;
+module.exports = edits;
