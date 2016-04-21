@@ -1,7 +1,15 @@
 var util = require('./util');
-function getRandCourse(groups){	
-	var groupNames = Object.keys(groups);
-	var i = groupNames[util.rand(groupNames.length)];
+/*
+	Returns a random course from one of the groups in groups object
+	if groupName is passed in, it will return a random class from that specific group
+*/
+function getRandCourse(groups,groupName){
+	if(groupName){
+		i = groupName;
+	} else {
+		var groupNames = Object.keys(groups);
+		var i = groupNames[util.rand(groupNames.length)];
+	}
 	return {
 		course:groups[i].courses[util.rand(groups[i].courses.length)],
 		groupName:i
@@ -46,10 +54,13 @@ function placeCourseInSchedule(course,sched,groupName){
 	}
 	return false;
 }
-module.exports = {
-	addRandCourse:function(schedulePrefs,oSched){
+/*
+	Adds a random course to the passed in schedule based on the schedulePrefs.
+	If groupName is defined, it will pick a random course from that group 
+*/
+function addRandCourse(schedulePrefs,oSched,groupName){
 		var sched = oSched.slice();
-		var course = getRandCourse(schedulePrefs.groups);
+		var course = getRandCourse(schedulePrefs.groups,groupName);
 		var added = false;
 		var i = 0;
 		while(!added && i < 20){
@@ -65,14 +76,35 @@ module.exports = {
 			}
 		}
 		return sched;
-	},
-	removeRandCourse:function(schedulePrefs, oSched){
-		var sched = oSched.slice();
-		var index = util.rand(sched.length);
-		sched.splice(index,1)
+}
+/*
+	removes a random course, if groupName is passed in, it will remove
+	a group from that groupname
+*/
+function removeRandCourse(schedulePrefs, oSched,groupName){
+		var index, sched = oSched.slice();
+		if(groupName){
+			var coursesInGroup = [];
+			sched.forEach(function(course,i){
+				if(course.groupName === groupName){
+					coursesInGroup.push(i);
+				}
+			});
+			// sets index to negative -1 if there were no courses in groupName
+			index = coursesInGroup.length? coursesInGroup[util.rand(coursesInGroup.length)] : -1;
+		}else {
+			index = util.rand(sched.length);
+		}
+		if(index >=0){
+			sched.splice(index,1)
+		}
 		return sched;
-	},
-	changeRandCourse:function(schedulePrefs, oSched){
-		return this.addRandCourse(schedulePrefs,this.removeRandCourse(schedulePrefs,oSched));
-	}
+}
+function changeRandCourse(schedulePrefs, oSched){
+	return this.addRandCourse(schedulePrefs,this.removeRandCourse(schedulePrefs,oSched));
+}
+module.exports = {
+	addRandCourse:addRandCourse
+	removeRandCourse:removeRandCourse
+	changeRandCourse:changeRandCourse
 };

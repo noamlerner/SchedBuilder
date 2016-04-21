@@ -14,6 +14,10 @@ function evaluate(schedPrefs, sched){
 			min/max from groups
 			calendar times
 	*/
+	var evaluation = {
+		score:0,
+		
+	};
 	var score = 0;
 	sched.forEach(function(course){
 		score += prefs[course.priority]*
