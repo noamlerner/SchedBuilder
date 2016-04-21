@@ -104,7 +104,7 @@ function changeRandCourse(schedulePrefs, oSched){
 	return this.addRandCourse(schedulePrefs,this.removeRandCourse(schedulePrefs,oSched));
 }
 module.exports = {
-	addRandCourse:addRandCourse
-	removeRandCourse:removeRandCourse
+	addRandCourse:addRandCourse,
+	removeRandCourse:removeRandCourse,
 	changeRandCourse:changeRandCourse
 };
