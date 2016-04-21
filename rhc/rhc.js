@@ -14,20 +14,47 @@ function fixSched(schedPrefs,cal,sched){
 	var evaluation = evaluate(schedPrefs, cal, sched);
 	var	changes = evaluation.addRandCourse.length + evaluation.removeRandCourse.length;
 	var i = 0;
-	while(changes >0){
+	while(changes >0 && i < 1000){
 		sched = applyEvaluationChanges(schedPrefs,sched,evaluation);
 		evaluation = evaluate(schedPrefs, cal, sched);
 		changes = evaluation.addRandCourse.length + evaluation.removeRandCourse.length;
+		i++;
+	}
+	if(changes > 0){
+		evaluation.score = -1000;
 	}
 	return {sched:sched,evaluation:evaluation};
 }
-function schedClimber(schedPrefs,cal){
-	var scheds = schedEdit.getRandNeighbors(
-		schedPrefs,
-		fixSched(schedPrefs,cal,[])
-	);
-	scheds.forEach(function())
+function schedClimber(schedPrefs,cal, iterations){
+	var topSched = fixSched(schedPrefs,cal,[]);
+	for(var i = 0; i < iterations; i++){
+		console.log('on iteration: ' + i)
+		var scheds = schedEdit.getRandNeighbors(
+			schedPrefs,
+			topSched.sched
+		);
+		var fixedScheds = []
+		console.log('neighbors found, fixing schedules')
+		scheds.forEach(function(s){
+			fixedScheds.push(fixSched(schedPrefs,cal,s));
+		});
+		fixedScheds.forEach(function(s){
+			if(topSched.evaluation.score < s.evaluation.score){
+				topSched = s;
+			}
+		});
+	}
+	return topSched;
 }
 module.exports = function(preferences){
-	schedClimber(preferences.schedule, preferences.cal);
+	var scheds = [];
+	for(var i = 0; i < 10; i++){
+		console.log('finding schedule: '+ i)
+		scheds.push(schedClimber(preferences.schedule, preferences.cal,100));
+	}
+	scheds.sort(function(a,b){
+		return b.evaluation.score - a.evaluation.score
+	});
+	console.log(scheds);
+	console.log('----------------------')
 }

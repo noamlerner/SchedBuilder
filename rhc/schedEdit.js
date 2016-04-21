@@ -63,7 +63,7 @@ function addRandCourse(schedulePrefs,oSched,groupName){
 		var course = getRandCourse(schedulePrefs.groups,groupName);
 		var added = false;
 		var i = 0;
-		while(!added && i < 20){
+		while(!added && i < 2){
 			added = true;
 			sched.forEach(function(c){
 				if(c.name === course.course.name){
