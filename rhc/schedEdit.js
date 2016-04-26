@@ -48,7 +48,9 @@ function placeCourseInSchedule(course,sched,groupName){
 			priority:course.priority,
 			ident:course.ident,
 			section:course.sections[i],
-			groupName:groupName
+			groupName:groupName,
+			major:course.major,
+			majorName:course.majorName
 		});
 		return true;
 	}

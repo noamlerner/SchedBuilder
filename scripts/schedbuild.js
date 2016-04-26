@@ -11,6 +11,9 @@ sched.config(['$routeProvider',
       when('/generate',{
         templateUrl:'./partials/generate.html'
       }).
+      when('/displayScheds',{
+        templateUrl:'./partials/displayScheds.html'
+      }).
       otherwise({
         redirectTo: '/sched'
       });

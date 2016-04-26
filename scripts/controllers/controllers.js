@@ -1,4 +1,4 @@
-angular.module('SchedControllers', ['Classes'])
+angular.module('SchedControllers', ['Classes','GeneratedScheds'])
 .controller('SchedSettingsCtrl', ['$scope','ClassFactory','ScheduleFactory', 
 	function ($scope,ClassFactory, ScheduleFactory) {
 	 ClassFactory.getClasses().then(function(data){
@@ -32,11 +32,22 @@ angular.module('SchedControllers', ['Classes'])
 		
 	}
 ])
-.controller('GenerateScheduleCtrl', ['$scope','ScheduleFactory','CalendarFactory', 
-	function ($scope,ScheduleFactory,CalendarFactory) {
+.controller('GenerateScheduleCtrl', ['$scope','$http','$location',
+	'ScheduleFactory','CalendarFactory','GenSchedsFactory',
+	function ($scope,$http,$location, ScheduleFactory,CalendarFactory,GenSchedsFactory) {
 		var obj = {};
 		obj.schedule = ScheduleFactory.schedule;
 		obj.cal = CalendarFactory.cal;
-		console.log(obj);
+		$http({
+		    url: '/generateSchedules',
+		    method: "POST",
+		    data: JSON.stringify(obj),
+		    headers: {'Content-Type': 'application/json'}
+		}).then(function(response){
+			GenSchedsFactory.setScheds(response.data);
+			$location.path('displayScheds')
+		}, function(){
+			console.log("ERROR")
+		});
 	}
 ]);

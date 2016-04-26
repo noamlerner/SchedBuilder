@@ -29,6 +29,8 @@ newData.forEach(function(major){
 		course.instructors = instructors;
 		course.instructors.push('Any');
 		course.professors = [{name:'Any',priority:'Med'}];
+		course.major = major.ident;
+		course.majorName = major.name;
 	})
 });
 fs.writeFileSync('./data.js', JSON.stringify(newData));
