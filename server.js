@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+var rhc = require('./rhc/rhc');
 app.use(bodyParser.json());
 app.get('/*',function(req,res){
 	console.log(req.params);
@@ -10,8 +11,9 @@ var a = function(req, res){
 	console.log(req.body);
 }
 app.post('/generateSchedules', function(req,res){
-	var sched = require('./sampleSched');
-	res.send(JSON.stringify(sched));
+	var schedPrefs = req.body;
+	var scheds = rhc(schedPrefs);
+	res.send(JSON.stringify(scheds));
 });
 
 app.listen(3000, function () {

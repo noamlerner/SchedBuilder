@@ -55,6 +55,5 @@ module.exports = function(preferences){
 	scheds.sort(function(a,b){
 		return b.evaluation.score - a.evaluation.score
 	});
-	var fs = require('fs');
-	fs.writeFileSync('./sampleSched.js','module.exports = '+JSON.stringify(scheds));
+	return scheds;
 }
