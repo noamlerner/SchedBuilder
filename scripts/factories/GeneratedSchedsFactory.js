@@ -22,7 +22,10 @@ fact.factory('GenSchedsFactory', [function () {
 					name:course.name,
 					timeslot:timeslot,
 					credits:course.section.credits,
-					instructor:course.section.instructor
+					instructor:course.section.instructor,
+					major:course.major,
+					majorName:course.majorName,
+					crn:course.section.call_number
 				});
 			});	
 		});
