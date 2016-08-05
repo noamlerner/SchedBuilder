@@ -1,0 +1,28 @@
+<div>
+	<span class="prev" ng-click='incrSched(-1)'><-Prev</span>
+	<table class="calendar-table center ">
+		<thead>
+			<th class="no-border-left">Time</th>
+			<th ng-repeat="day in days" class="calendar-column-header">{{day}}</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="border-right">
+					<div class="sched-display-box font-bolder" ng-repeat="hour in hours">
+						{{hour}}
+					</div>
+				</td>
+				<td ng-repeat="day in days" class="border-right">
+					<div class="sched-col">
+						<div ng-repeat="hour in hours" class="sched-display-box"></div>
+						<div ng-repeat="course in schedByDay[day]" ng-style="styles[course.crn]">{{course.major}}  - {{course.ident}},
+						{{course.instructor.lname}}, {{course.instructor.fname}}
+						{{course.crn}}</div>
+					</div>
+				</td>
+			</tr>
+				
+		</tbody>
+	</table>
+	<span class="next" ng-click='incrSched(1)'>Next-></span>
+</div>

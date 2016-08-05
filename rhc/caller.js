@@ -1,1 +1,1 @@
-var rhc = require('./rhc')(require('./sampleSchedData'));
+var rhc = require('./rhc')(require('./../courseData/sampleSchedData'));

@@ -16,9 +16,6 @@ function getRandCourse(groups,groupName){
 	};
 }
 
-function overlap1D(x0,x1,y0,y1){
-	return !((x0 > y0  && x1 > y0) || (y0 > x0 && y0 > x1))
-}
 function placeCourseInSchedule(course,sched,groupName){
 	var sectionsTried = [];
 	var fit = false;
@@ -32,7 +29,7 @@ function placeCourseInSchedule(course,sched,groupName){
 		course.sections[i].timeslots.forEach(function(timeslot){
 			sched.forEach(function(course){
 				course.section.timeslots.forEach(function(existingTimeslot){
-					if(overlap1D(existingTimeslot.start_time, existingTimeslot.end_time,
+					if(util.overlap1D(existingTimeslot.start_time, existingTimeslot.end_time,
 						timeslot.start_time, timeslot.end_time)){
 						conflict = true;
 					}
@@ -65,13 +62,13 @@ function addRandCourse(schedulePrefs,oSched,groupName){
 		var course = getRandCourse(schedulePrefs.groups,groupName);
 		var added = false;
 		var i = 0;
-		while(!added && i < 2){
+		while(!added && i < 10){
 			added = true;
 			sched.forEach(function(c){
 				if(c.name === course.course.name){
 					addded = false;
 				}
-			})
+			});
 			if(added){
 				added = placeCourseInSchedule(course.course,sched,course.groupName);	
 				i++;

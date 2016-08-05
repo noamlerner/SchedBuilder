@@ -1,0 +1,14 @@
+<div class="available-classes class-view">
+	Filter: <input type="text" ng-model="search"></input>
+	<div ng-show="viewMajor">
+		<div ng-repeat="major in courses|filter:search" class="square" ng-click="expandMajor(major)">
+			<p >{{major.ident}} \ {{major.name}}</p>
+		</div>
+	</div>
+	<div ng-hide="viewMajor">
+		<button ng-click="toggleView()">Back</button> <br>
+		<div  ng-repeat="course in major.courses|filter:search" class="square" ng-click="expandCourse(course)">
+			<p >{{course.name}} {{course.ident}}</p>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,17 @@
+<div class="available-classes class-view">
+	<div ng-show="viewGroups">
+		Filter: <input type="text" ng-model="search"></input> <br>
+		<div ng-repeat="(group, value) in groups" class="square" ng-click="expandGroup(group)">
+			<p>{{group}}</p>
+		</div>
+	</div>
+	<div ng-hide="viewGroups">
+		<div class="title" ng-click="$parent.setGroup(groupName)">{{groupName}}</div>
+		<br>Filter: <input type="text" ng-model="search"></input>
+		<button ng-click="toggleView()">Back</button> <br>
+		<div  ng-repeat="course in group.courses |filter:search" class="square" ng-click="expandCourse(course)">
+			<button ng-click="removeCourse(course)" class="x-button">x</button>
+			<p >{{course.name}} {{course.ident}}</p>
+		</div>
+	</div>
+</div>

@@ -4,12 +4,9 @@ var app = express();
 var rhc = require('./rhc/rhc');
 app.use(bodyParser.json());
 app.get('/*',function(req,res){
-	console.log(req.params);
 		res.sendFile(__dirname+'/'+req.params[0])
-})
-var a = function(req, res){
-	console.log(req.body);
-}
+});
+	
 app.post('/generateSchedules', function(req,res){
 	var schedPrefs = req.body;
 	var scheds = rhc(schedPrefs);
