@@ -13,12 +13,13 @@ function getRandCourse(groups, groupName, sched) {
         var i = groupNames[util.rand(groupNames.length)];
     }
     if (!candidateCourses[i]) {
+        var keys = [];
+        sched.forEach(function(course){
+            keys.push(course.major + course.ident);
+        });
         candidateCourses[i] = groups[i].courses.filter(function(course) {
             var key = course.major + course.ident;
-            return sched.every(function(c) {
-                var key1 = c.major + c.ident;
-                return key1 !== key;
-            });
+            return keys.indexOf(key) ==-1;
         });
     }
     var course = candidateCourses[i][util.rand(candidateCourses[i].length)];
