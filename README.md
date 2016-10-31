@@ -1,5 +1,4 @@
-SchedBuilder is a web app that creates schedules based on preferences (more in General Overview). This was created as a practice project for me to learn angular1.6 before a job while also doing something i was interested in. Therefore, it is very buggy and unpolished - use at your own risk of annoyance. It does work as is, but if you try to break it, it will break.
-
+SchedBuilder is a web app that creates schedules based on preferences (more in General Overview). This was created as a practice project for me to learn angular1.6 before a job while also doing something i was interested in. Therefore, it is very buggy and unpolished - use at your own risk of annoyance. It does work, though.
 I will accept pull requests if anyone decides they want to contribute! 
 
 ###General Overview
@@ -8,7 +7,7 @@ This is a web app that uses the the list of courses from a specific semester  an
 1. Hours/Days you want to be in class
 2. Proffessors you want to take
 3. Classes you want to take
-3.a. Wanting to take 1 (or 2 or 3) of a group of classes. As in one of (CSXXXX or PSYCYYYY)
+3. ..a. Wanting to take 1 (or 2 or 3) of a group of classes. As in one of (CSXXXX or PSYCYYYY)
 4. Amount of credit hours in your schedule
 
 The algorithm used to create schedules is a form of Randomized Hill Climbing I customized for this. it basically goes like this:
@@ -24,20 +23,24 @@ The algorithm used to create schedules is a form of Randomized Hill Climbing I c
 
 Now, on how to use it:
 ###Instal node modules before trying to use
-In the root director (SchedBuilder/) run 
+If you don't have nodejs/npm installed, download and install it: https://nodejs.org/en/ 
+Then after downloading/cloning the repo run this in the root directory (SchedBuilder/) 
 ```
 npm i
 ```
 
- Note, if you are doing this for Spring 2017, you can skip to the section Running the Server and read from there - but if youre interested in how the project works, you might want to read the sections before it.
-
 
 ### Getting The Course Data
- The way SchedBuilder gets the course lstings is by scraping them from courseoff (cause gatechs api is pretty horrible to use). To get courses for a semester you will first need to update the path in courseData/getCourses.js so that it points to the right semester. It is currently set to Spring 2017. You do it like so:
+This section applies to changing the course data which is only necessary if you want to use this for a semester other than the current one (Spring 2017) or a different scool (it's currently set to Georgia Tech). You can skip it otherwise.
+
+The way SchedBuilder gets the course lstings is by scraping them from courseoff (cause gatechs api is pretty horrible to use). To get courses for a semester you will first need to update the path in courseData/getCourses.js in the httpopts object so that it points to the right semester. It is currently set to Spring 2017. You do it like so:
 1. In a browser go to the url soc.courseoff.com/gatech/terms
-2. Identify the semester you want (the 'start_date' property is in unix time (milliseconds), i find that converting this helps me determine which i want - I use https://currentmillis.com/ to convert. Also, the newest tends to be on the bottom)
-3. Once you've identified the correct semester, copy its 'ident', and replace it in the getCourses.js. It is located in the httpopts object at the top of the file in the string path which is formatted: '/gatech/terms/{IDENT}/majors/'
-Now you need to scrape the data by running the following in your terminal from the root directory (SchedBuilder/):
+2. Identify the semester you want, the 'start_date' property is in unix time milliseconds, i find that converting this helps me determine which semester i want - I use https://currentmillis.com/ to convert. Also, the newest semester tends to be on the bottom)
+3. Once you've identified the correct semester, copy its 'ident' proerty, and replace it in the getCourses.js path which is located in the httpopts object at the top of the file, the string is formatted: '/gatech/terms/{IDENT}/majors/'
+
+If you all you wanted to do was change the semester, you are ready to scrape the data. If you wanted to change schools, you will need to find the correct courseoff url for your schools data (or provide your own data).
+
+Now you need to scrape by running the following in your terminal from the root directory (SchedBuilder/):
 ```
 node courseData/getCourses.js
 ```
@@ -46,7 +49,7 @@ Note - if you get an error, try again. That happens sometimes.
 This has either replaced or generated a new file: courseData/classData.js
 
 ### Converting Data
-The schedbuilder program doesn't use the data just yet. Next, from the root directory you need to run
+The schedbuilder program can't use the data just yet. Next, from the root directory you need to run
 ```
 node courseData/convertData.js
 ```

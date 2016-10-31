@@ -2,10 +2,12 @@ var schedEdit = require('./schedEdit');
 var evaluate = require('./evaluateSched');
 // the amount of times this will attempt to improve a schedule
 // higher = more time but better schedule
-var schedIterations = 1000000;
+var schedIterations = 10000;
 // amount of times this will attempt to fix a schedule
 //before giving up on it.
 var fixAtempts = 1000;
+//the number of schedules to generate
+var numScheds = 10;
 function applyEvaluationChanges(schedPrefs, oSched, evaluation){
 	var sched = oSched.slice();
 	evaluation.removeRandCourse.forEach(function(groupName){
@@ -54,7 +56,7 @@ function schedClimber(schedPrefs,cal, iterations){
 }
 module.exports = function(preferences){
 	var scheds = [];
-	for(var i = 0; i < 15; i++){
+	for(var i = 0; i < numScheds; i++){
 		console.log('finding schedule: '+ i)
 		try {
 			scheds.push(schedClimber(preferences.schedule, preferences.cal,schedIterations));
