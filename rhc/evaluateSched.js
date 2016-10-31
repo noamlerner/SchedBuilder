@@ -109,9 +109,9 @@ module.exports = function evaluate(schedPrefs, cal, sched){
 	Object.keys(schedPrefs.groups).forEach(function(groupName){
 		evaluation.groupHrs[groupName] = 0;
 		evaluation.groupCourses[groupName] = 0;
-	})
+	});
 	evaluateCourses(schedPrefs, sched,evaluation);
 	evaluateMinMax(schedPrefs, sched, evaluation);
 	evaluateTimes(cal,sched, evaluation);
 	return evaluation;
-}
+};
