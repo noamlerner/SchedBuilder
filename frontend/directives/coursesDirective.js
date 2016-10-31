@@ -29,7 +29,9 @@ angular.module('CoursesDirs', [])
 			course:'=crs'
 		},
 		link: function ($scope, iElement, iAttrs) {
-			$scope.groups = ['any']
+			if(!$scope.groups){
+			$scope.groups = ['any']				
+			}
 				$scope.addGroup = function(){
 				var name = $scope.groupName;
 				if(name && $scope.groups.indexOf(name) === -1 ){

@@ -6,6 +6,7 @@ fact.factory('ScheduleFactory', [function () {
 		prefHours:[13,15]
 	};
 	factory.addGroup = function(name){
+		console.log(name);
 			factory.schedule.groups[name] = {
 				courses:[],
 				priority:'Med',
@@ -57,6 +58,9 @@ fact.factory('ScheduleFactory', [function () {
 			minHrs:minHours || -1,
 			maxHrs:maxHours || -1
 		};
+	}
+	factory.getGroups = function(){
+		return factory.schedule.groups;
 	}
 
 	return factory;

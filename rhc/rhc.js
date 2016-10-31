@@ -1,5 +1,11 @@
 var schedEdit = require('./schedEdit');
 var evaluate = require('./evaluateSched');
+// the amount of times this will attempt to improve a schedule
+// higher = more time but better schedule
+var schedIterations = 1000000;
+// amount of times this will attempt to fix a schedule
+//before giving up on it.
+var fixAtempts = 1000;
 function applyEvaluationChanges(schedPrefs, oSched, evaluation){
 	var sched = oSched.slice();
 	evaluation.removeRandCourse.forEach(function(groupName){
@@ -14,7 +20,7 @@ function fixSched(schedPrefs,cal,sched){
 	var evaluation = evaluate(schedPrefs, cal, sched);
 	var	changes = evaluation.addRandCourse.length + evaluation.removeRandCourse.length;
 	var i = 0;
-	while(changes >0 && i < 1000){
+	while(changes >0 && i < fixAtempts){
 		sched = applyEvaluationChanges(schedPrefs,sched,evaluation);
 		evaluation = evaluate(schedPrefs, cal, sched);
 		changes = evaluation.addRandCourse.length + evaluation.removeRandCourse.length;
@@ -48,12 +54,20 @@ function schedClimber(schedPrefs,cal, iterations){
 }
 module.exports = function(preferences){
 	var scheds = [];
-	for(var i = 0; i < 10; i++){
+	for(var i = 0; i < 15; i++){
 		console.log('finding schedule: '+ i)
-		scheds.push(schedClimber(preferences.schedule, preferences.cal,100));
+		try {
+			scheds.push(schedClimber(preferences.schedule, preferences.cal,schedIterations));
+		} catch(a){
+			console.log(a);
+			console.log('failure experienced at ' + i);
+			i--;
+		}
 	}
 	scheds.sort(function(a,b){
 		return b.evaluation.score - a.evaluation.score
 	});
+	console.log('done');
+	console.log(scheds);
 	return scheds;
 }
