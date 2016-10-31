@@ -6,7 +6,7 @@ var fs = require('fs');
 function makeRequest(options){
   var httpopts = {
     host: 'soc.courseoff.com',
-    path: '/gatech/terms/201601/majors/' + options.p,
+    path: '/gatech/terms/201701/majors/' + options.p,
     method: 'GET'
   };
   var response = "";
@@ -75,5 +75,5 @@ makeRequest({
 });
 
 function writeIt(){
-    fs.writeFileSync('./classData.js', 'module.exports = ' + JSON.stringify(classData));
+    fs.writeFileSync('./courseData/classData.js', 'module.exports = ' + JSON.stringify(classData));
 }
