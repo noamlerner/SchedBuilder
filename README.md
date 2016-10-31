@@ -34,9 +34,9 @@ Now, on how to use it:
 
 ### Getting The Course Data
  The way SchedBuilder gets the course lstings is by scraping them from courseoff (cause gatechs api is pretty horrible to use). To get courses for a semester you will first need to update the path in courseData/getCourses.js so that it points to the right semester. It is currently set to Spring 2017. You do it like so:
- 	1. In a browser go to the url soc.courseoff.com/gatech/terms
- 	2. Identify the semester you want (the 'start_date' property is in unix time (milliseconds), i find that converting this helps me determine which i want - I use https://currentmillis.com/ to convert. Also, the newest tends to be on the bottom)
- 	3.Once you've identified the correct semester, copy its 'ident', and replace it in the getCourses.js. It is located in the httpopts object at the top of the file in the string path which is formatted: '/gatech/terms/{IDENT}/majors/'
+ 1. In a browser go to the url soc.courseoff.com/gatech/terms
+ 2. Identify the semester you want (the 'start_date' property is in unix time (milliseconds), i find that converting this helps me determine which i want - I use https://currentmillis.com/ to convert. Also, the newest tends to be on the bottom)
+3. Once you've identified the correct semester, copy its 'ident', and replace it in the getCourses.js. It is located in the httpopts object at the top of the file in the string path which is formatted: '/gatech/terms/{IDENT}/majors/'
 Now you need to scrape the data by running the following in your terminal from the root directory (SchedBuilder/):
 ```
 node courseData/getCourses.js
