@@ -89,7 +89,7 @@ Now, create group and populate with courses until you have selected all the cour
 On this page you can select the priority for different blocks of different days by selecting the time priority at the bottom (clicking on the never low med or high) and clicking on the time block.
 
 You Also set the preferred amount of Credit Hours you want for your schedule. This is an interval found in the settings section that defaults to 13-15 hours.
-By clicking  <---Course Settings you can update the courses youve selected and by clicking Generate Schedule --> the algorithm will try to create 10 possible schedules for you. This may take some time.
+By clicking  <---Course Settings you can update the courses youve selected and by clicking Generate Schedule --> the algorithm will try to create 10 possible schedules for you. This may take some time. You can look at the servers log (in the terminal) for progress reports.
 
 
 ####Generated schedules Page
