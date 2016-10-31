@@ -2,7 +2,7 @@ var schedEdit = require('./schedEdit');
 var evaluate = require('./evaluateSched');
 // the amount of times this will attempt to improve a schedule
 // higher = more time but better schedule
-var schedIterations = 50000;
+var schedIterations = 15000;
 // amount of times this will attempt to fix a schedule
 //before giving up on it.
 var fixAtempts = 1000;
@@ -18,12 +18,25 @@ function applyEvaluationChanges(schedPrefs, oSched, evaluation){
 	});
 	return sched;
 }
+function removeDupes(oSched){
+	var sched = [];
+	var seen = [];
+	oSched.forEach(function(c){
+		var key = c.major + c.name;
+		if(seen.indexOf(key) === -1 ){
+			sched.push(c);
+		}
+		seen.push(key);
+	});
+	return sched;
+}
 function fixSched(schedPrefs,cal,sched){
 	var evaluation = evaluate(schedPrefs, cal, sched);
 	var	changes = evaluation.addRandCourse.length + evaluation.removeRandCourse.length;
 	var i = 0;
 	while(changes >0 && i < fixAtempts){
 		sched = applyEvaluationChanges(schedPrefs,sched,evaluation);
+		sched = removeDupes(sched);
 		evaluation = evaluate(schedPrefs, cal, sched);
 		changes = evaluation.addRandCourse.length + evaluation.removeRandCourse.length;
 		i++;
