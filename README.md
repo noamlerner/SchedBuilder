@@ -24,10 +24,10 @@ The algorithm used to create schedules is a form of Randomized Hill Climbing I c
 
 Now, on how to use it:
 ###Instal node modules before trying to use
-	In the root director (SchedBuilder/) run 
-	```
-	npm i
-	```
+In the root director (SchedBuilder/) run 
+```
+npm i
+```
 
  Note, if you are doing this for Spring 2017, you can skip to the section Running the Server and read from there - but if youre interested in how the project works, you might want to read the sections before it.
 
