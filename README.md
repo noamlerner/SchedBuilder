@@ -31,7 +31,7 @@ npm i
 
 
 ### Getting The Course Data
-This section applies to changing the course data which is only necessary if you want to use this for a semester other than the current one (Spring 2017) or a different scool (it's currently set to Georgia Tech). You can skip it otherwise.
+This section applies to changing the course data which is only necessary if you want to use this for a semester other than the current one (Spring 2017) or a different scool (it's currently set to Georgia Tech). You can skip to the section titled 'Running The Server' otherwise.
 
 The way SchedBuilder gets the course lstings is by scraping them from courseoff (cause gatechs api is pretty horrible to use). To get courses for a semester you will first need to update the path in courseData/getCourses.js in the httpopts object so that it points to the right semester. It is currently set to Spring 2017. You do it like so:
 1. In a browser go to the url soc.courseoff.com/gatech/terms
