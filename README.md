@@ -3,23 +3,23 @@ SchedBuilder is a web app that creates schedules based on preferences (more in G
 I will accept pull requests if anyone decides they want to contribute! 
 
 ###General Overview
-	If you don't care on how this works and just want to use it, skip this section.
-	This is a web app that uses the the list of courses from a specific semester  and your preferences to create an ideal schedule for you. Preferences you can set are:
-	1. Hours/Days you want to be in class
-	2. Proffessors you want to take
-	3. Classes you want to take
-	3.a. Wanting to take 1 (or 2 or 3) of a group of classes. As in (one of CSXXXX or PSYCYYYY)
-	4. Amount of credit hours in your schedule
+If you don't care on how this works and just want to use it, skip this section.
+This is a web app that uses the the list of courses from a specific semester  and your preferences to create an ideal schedule for you. Preferences you can set are:
+1. Hours/Days you want to be in class
+2. Proffessors you want to take
+3. Classes you want to take
+3.a. Wanting to take 1 (or 2 or 3) of a group of classes. As in (one of CSXXXX or PSYCYYYY)
+4. Amount of credit hours in your schedule
 
-	The algorithm used to create schedules is a form of Randomized Hill Climbing I customized for this. it basically goes like this:
-		1. Start with empty schedule
-		2. Add random courses until minimum requirements are met (credit hours/courses from groups etc)
-		3. score schedule
-		4. Make minor changes to schedule
-			a. add course
-			b. remove course
-			c. change course
-		5. score new schedules, keep highest valued one and go to 3. Repeat as many times as you want 
+The algorithm used to create schedules is a form of Randomized Hill Climbing I customized for this. it basically goes like this:
+	1. Start with empty schedule
+	2. Add random courses until minimum requirements are met (credit hours/courses from groups etc)
+	3. score schedule
+	4. Make minor changes to schedule
+		a. add course
+		b. remove course
+		c. change course
+	5. score new schedules, keep highest valued one and go to 3. Repeat as many times as you want 
 
 
 Now, on how to use it:
