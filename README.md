@@ -12,18 +12,14 @@ This is a web app that uses the the list of courses from a specific semester  an
 4. Amount of credit hours in your schedule
 
 The algorithm used to create schedules is a form of Randomized Hill Climbing I customized for this. it basically goes like this:
-	1. Start with empty schedule
-	
-	2. Add random courses until minimum requirements are met (credit hours/courses from groups etc)
-	
-	3. score schedule
-	
-	4. Make minor changes to schedule
-	..1. add course
-	..2. remove course
-	..3. change course
-	
-	5. score new schedules, keep highest valued one and go to 3. Repeat as many times as you want 
+1. Start with empty schedule
+2. Add random courses until minimum requirements are met (credit hours/courses from groups etc)
+3. score schedule
+4. Add random courses until minimum requirements are met (credit hours/courses from groups etc)
+⋅⋅1. add course
+⋅⋅2. remove course
+⋅⋅2. change course
+5. score new schedules, keep highest valued one and go to 3. Repeat as many times as you want.
 
 
 Now, on how to use it:
