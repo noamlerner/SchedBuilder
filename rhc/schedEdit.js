@@ -61,7 +61,7 @@ function addRandCourse(schedulePrefs, oSched, groupName) {
     var sched = oSched.slice();
     var added = false;
     var i = 0;
-    while (!added && i < 100) {
+    while (!added && i < 15) {
         i++;
         var course = getRandCourse(schedulePrefs.groups, groupName);
         added = true;

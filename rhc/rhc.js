@@ -2,7 +2,7 @@ var schedEdit = require('./schedEdit');
 var evaluate = require('./evaluateSched');
 // the amount of times this will attempt to improve a schedule
 // higher = more time but better schedule
-var schedIterations = 10000;
+var schedIterations = 50000;
 // amount of times this will attempt to fix a schedule
 //before giving up on it.
 var fixAtempts = 1000;
@@ -33,10 +33,10 @@ function fixSched(schedPrefs,cal,sched){
 	}
 	return {sched:sched,evaluation:evaluation};
 }
-function schedClimber(schedPrefs,cal, iterations){
+function schedClimber(schedPrefs,cal, iterations, onSched){
 	var topSched = fixSched(schedPrefs,cal,[]);
 	for(var i = 0; i < iterations; i++){
-		console.log('on iteration: ' + i)
+		console.log('on schedule: ' + onSched + ' and iteration: '+ i )
 		var scheds = schedEdit.getRandNeighbors(
 			schedPrefs,
 			topSched.sched
@@ -59,7 +59,7 @@ module.exports = function(preferences){
 	for(var i = 0; i < numScheds; i++){
 		console.log('finding schedule: '+ i)
 		try {
-			scheds.push(schedClimber(preferences.schedule, preferences.cal,schedIterations));
+			scheds.push(schedClimber(preferences.schedule, preferences.cal,schedIterations,i));
 		} catch(a){
 			console.log(a);
 			console.log('failure experienced at ' + i);
