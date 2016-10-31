@@ -8,7 +8,7 @@ This is a web app that uses the the list of courses from a specific semester  an
 1. Hours/Days you want to be in class
 2. Proffessors you want to take
 3. Classes you want to take
-3.a. Wanting to take 1 (or 2 or 3) of a group of classes. As in (one of CSXXXX or PSYCYYYY)
+3.a. Wanting to take 1 (or 2 or 3) of a group of classes. As in one of (CSXXXX or PSYCYYYY)
 4. Amount of credit hours in your schedule
 
 The algorithm used to create schedules is a form of Randomized Hill Climbing I customized for this. it basically goes like this:
