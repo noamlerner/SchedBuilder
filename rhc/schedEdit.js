@@ -14,12 +14,12 @@ function getRandCourse(groups, groupName, sched) {
     }
     if (!candidateCourses[i]) {
         var keys = [];
-        sched.forEach(function(course){
+        sched.forEach(function(course) {
             keys.push(course.major + course.ident);
         });
         candidateCourses[i] = groups[i].courses.filter(function(course) {
             var key = course.major + course.ident;
-            return keys.indexOf(key) ==-1;
+            return keys.indexOf(key) == -1;
         });
     }
     var course = candidateCourses[i][util.rand(candidateCourses[i].length)];
@@ -82,7 +82,9 @@ function addRandCourse(schedulePrefs, oSched, groupName) {
         i++;
         added = true;
         var course = getRandCourse(schedulePrefs.groups, groupName, sched);
-        added = placeCourseInSchedule(course.course, sched, course.groupName);
+        if (course) {
+            added = placeCourseInSchedule(course.course, sched, course.groupName);
+        }
     }
     return sched;
 }
