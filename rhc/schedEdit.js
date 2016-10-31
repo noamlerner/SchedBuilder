@@ -12,14 +12,16 @@ function getRandCourse(groups, groupName, sched) {
         var groupNames = Object.keys(groups);
         var i = groupNames[util.rand(groupNames.length)];
     }
-    var candidateCourses = groups[i].courses.filter(function(course) {
-        var key = course.major + course.ident;
-        return sched.every(function(c) {
-            var key1 = c.major + c.ident;
-            return key1 !== key;
+    if (!candidateCourses[i]) {
+        candidateCourses[i] = groups[i].courses.filter(function(course) {
+            var key = course.major + course.ident;
+            return sched.every(function(c) {
+                var key1 = c.major + c.ident;
+                return key1 !== key;
+            });
         });
-    });
-    var course = candidateCourses[util.rand(candidateCourses.length)];
+    }
+    var course = candidateCourses[i][util.rand(candidateCourses[i].length)];
     return {
         course: course,
         groupName: i
@@ -63,6 +65,9 @@ function placeCourseInSchedule(course, sched, groupName) {
     }
     return false;
 }
+
+//ammortize for speed purposes, should be ceared everytime addRandCourse is called.
+var candidateCourses = {};
 /*
 	Adds a random course to the passed in schedule based on the schedulePrefs.
 	If groupName is defined, it will pick a random course from that group 
@@ -70,10 +75,11 @@ function placeCourseInSchedule(course, sched, groupName) {
 function addRandCourse(schedulePrefs, oSched, groupName) {
     var sched = oSched.slice();
     var added = false;
+    candidateCourses = {};
     var i = 0;
     while (!added && i < 15) {
         i++;
-        added=true;
+        added = true;
         var course = getRandCourse(schedulePrefs.groups, groupName, sched);
         added = placeCourseInSchedule(course.course, sched, course.groupName);
     }

@@ -72,13 +72,13 @@ module.exports = function(preferences){
 	var scheds = [];
 	for(var i = 0; i < numScheds; i++){
 		console.log('finding schedule: '+ i)
-		try {
+		// try {
 			scheds.push(schedClimber(preferences.schedule, preferences.cal,schedIterations,i));
-		} catch(a){
-			console.log(a);
-			console.log('failure experienced at ' + i);
-			i--;
-		}
+	// 	} catch(a){
+	// 		console.log(a);
+	// 		console.log('failure experienced at ' + i);
+	// 		i--;
+	// 	}
 	}
 	scheds.sort(function(a,b){
 		return b.evaluation.score - a.evaluation.score
