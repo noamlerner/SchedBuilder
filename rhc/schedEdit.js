@@ -3,15 +3,25 @@ var util = require('./util');
 	Returns a random course from one of the groups in groups object
 	if groupName is passed in, it will return a random class from that specific group
 */
-function getRandCourse(groups, groupName) {
+function getRandCourse(groups, groupName, sched) {
+    var course;
     if (groupName) {
         i = groupName;
+
     } else {
         var groupNames = Object.keys(groups);
         var i = groupNames[util.rand(groupNames.length)];
     }
+    var candidateCourses = groups[i].courses.filter(function(course) {
+        var key = course.major + course.ident;
+        return sched.every(function(c) {
+            var key1 = c.major + c.ident;
+            return key1 !== key;
+        });
+    });
+    var course = candidateCourses[util.rand(candidateCourses.length)];
     return {
-        course: groups[i].courses[util.rand(groups[i].courses.length)],
+        course: course,
         groupName: i
     };
 }
@@ -63,16 +73,9 @@ function addRandCourse(schedulePrefs, oSched, groupName) {
     var i = 0;
     while (!added && i < 15) {
         i++;
-        var course = getRandCourse(schedulePrefs.groups, groupName);
-        added = true;
-        sched.forEach(function(c) {
-            if (c.name === course.course.name) {
-                addded = false;
-            }
-        });
-        if (added) {
-            added = placeCourseInSchedule(course.course, sched, course.groupName);
-        }
+        added=true;
+        var course = getRandCourse(schedulePrefs.groups, groupName, sched);
+        added = placeCourseInSchedule(course.course, sched, course.groupName);
     }
     return sched;
 }

@@ -9,6 +9,7 @@ var fixAtempts = 1000;
 //the number of schedules to generate
 var numScheds = 10;
 function applyEvaluationChanges(schedPrefs, oSched, evaluation){
+	//TODO take into account the best of the dupes to keep.
 	var sched = oSched.slice();
 	evaluation.removeRandCourse.forEach(function(groupName){
 		sched = schedEdit.removeRandCourse(schedPrefs, sched, groupName);
