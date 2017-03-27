@@ -6,7 +6,7 @@ var fs = require('fs');
 function makeRequest(options){
   var httpopts = {
     host: 'soc.courseoff.com',
-    path: '/gatech/terms/201701/majors/' + options.p,
+    path: '/gatech/terms/201708/majors/' + options.p,
     method: 'GET'
   };
   var response = "";
@@ -53,20 +53,26 @@ function getSections(c,opts){
 var sectionCount = 0;
 function buildData(r, options){
     var major = options.major.ident;
-    sectionCount++;
     if(!classData[major]){
         classData[major] = {
             name: options.major.name,
             classes:{}
         };
     }
-    classData[major].classes[options.course.ident] = {
-        name:options.course.name,
-        sections:JSON.parse(r)
-    };
-    console.log('classCount-sectionCount '+classCount + '---'+sectionCount);
-    if(classCount === sectionCount){
-        writeIt();
+    try{
+      classData[major].classes[options.course.ident] = {
+          name:options.course.name,
+          sections:JSON.parse(r)
+      };
+      sectionCount++
+      console.log('classCount-sectionCount '+classCount + '---'+sectionCount);
+      if(classCount === sectionCount){
+          console.log('-----WRITTEN')
+          writeIt();
+      }
+    } catch(err){
+      console.log('failed call, trying again')
+      makeRequest(options)
     }
 }
 makeRequest({
