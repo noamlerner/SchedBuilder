@@ -1,7 +1,7 @@
 SchedBuilder is a web app that creates schedules based on preferences (more in General Overview). This was created as a practice project for me to learn angular1.6 before a job while also doing something i was interested in. Therefore, it is very buggy and unpolished - use at your own risk of annoyance. It does work, though.
 I will accept pull requests if anyone decides they want to contribute! 
 
-###General Overview
+### General Overview
 If you don't care on how this works and just want to use it, skip this section.
 This is a web app that uses the the list of courses from a specific semester  and your preferences to create an ideal schedule for you. Preferences you can set are:
 1. Hours/Days you want to be in class
@@ -22,7 +22,7 @@ The algorithm used to create schedules is a form of Randomized Hill Climbing I c
 
 
 Now, on how to use it:
-###Instal node modules before trying to use
+### Instal node modules before trying to use
 If you don't have nodejs/npm installed, download and install it: https://nodejs.org/en/ 
 Then after downloading/cloning the repo run this in the root directory (SchedBuilder/) 
 ```
