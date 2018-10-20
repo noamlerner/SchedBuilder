@@ -55,14 +55,14 @@ node courseData/convertData.js
 ```
 This creates courseData/coursesModule.js and SchedBuilder/courses
 
-###Running the Server
+### Running the Server
 To run the server simply run the following from the root directory. 
 ```
 nodejs server.js
 ```
 
-###How Use the website
-####Home Page 
+### How Use the website
+#### Home Page 
 Navigate to localhost:3000 (or whatever port youve changed it to)
 
 You will first see a screen with 3 sections. 
@@ -88,14 +88,14 @@ By clicking on any of the groups in the group section, it will update to show yo
 Now, create group and populate with courses until you have selected all the courses you might want to take. The more you select the better (you can specify how many credit horus after this). When you are done, click "Generate Schedule Layout"
 
 
-####Schedule Page
+#### Schedule Page
 On this page you can select the priority for different blocks of different days by selecting the time priority at the bottom (clicking on the never low med or high) and clicking on the time block.
 
 You Also set the preferred amount of Credit Hours you want for your schedule. This is an interval found in the settings section that defaults to 13-15 hours.
 By clicking  <---Course Settings you can update the courses youve selected and by clicking Generate Schedule --> the algorithm will try to create 10 possible schedules for you. This may take some time. You can look at the servers log (in the terminal) for progress reports.
 
 
-####Generated schedules Page
+#### Generated schedules Page
 On this page you will see a calendar view of the week based on a potential schedule. Each class SHOULD (but might not be) colored differently, and have text formatted in the following way inside the block "{MAJOR-course number} {professor} {CRN} ". An example of this could be : "ECON - 3110, Besedes, Tibor 20380"
 
 You can navigate to different generated schedules by clicking on the next and previous. 
