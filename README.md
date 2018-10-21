@@ -58,7 +58,7 @@ This creates courseData/coursesModule.js and SchedBuilder/courses
 ### Running the Server
 To run the server simply run the following from the root directory. 
 ```
-nodejs server.js
+node server.js
 ```
 
 ### How Use the website
